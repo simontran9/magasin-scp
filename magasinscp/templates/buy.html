@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% block title %}Le magasin viking{% endblock title %}
+
+{% block content %}
+<div class="alert alert-warning" role="alert">
+    NOTE: En cliquant le bouton "Acheter l'item!" plusieurs fois, vous allez acheter plusieurs items!
+</div>
+<br>
+<h2 class="text-center">Le magasin SCP</h2><br><br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Achetez</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.product_name }}</td>
+            <td>{{ item.price }}</td>
+            <td>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#Modal-Purchase-Item-{{ item.id }}">
+                    Achetez
+                </button>
+            </td>
+        </tr>
+        <!-- Modal -->
+        <div class="modal fade" id="Modal-Purchase-Item-{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Modal-Purchase-Item-{{ item.id }}">Confirmation d'achat de {{
+                            item.product_name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST">
+                            {{ purchase_form.hidden_tag() }}
+
+                            <h5 class="text-center">
+                                Voulez-vous acheter {{ item.product_name }} pour {{ item.price }} étampes?
+                            </h5><br>
+                            <h7 class="text-center">
+                                En cliquant le bouton "Acheter l'item!", vous confirmer votre achat.
+                            </h7><br><br>
+                            <input id="clicked_item" name="clicked_item" type="hidden" value="{{ item.product_name }}">
+                            <center>
+                                {{ purchase_form.submit(class="btn btn-success")}}
+                            </center><br>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

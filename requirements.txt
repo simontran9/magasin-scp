@@ -1,0 +1,11 @@
+black 
+flask
+itsdangerous==2.0.1
+flask-wtf 
+email_validator 
+flask-sqlalchemy
+flask-bcrypt
+flask-login
+flask-admin
+flask-mail
+python-dotenv

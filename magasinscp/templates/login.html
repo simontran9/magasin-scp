@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block title %}Se connecter{% endblock title %}
+
+{% block content %}
+<!-- Form -->
+<div>
+    <h2>Se connecter</h2><br>
+    <form method="POST">
+        {{ form.csrf_token() }}
+        <div class="mb-3">
+            {{ form.email.label }}
+
+            {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label }}
+
+            {% if form.password.errors %}
+            {{ form.password(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.password(class="form-control") }}
+            {% endif %}
+        </div>
+        <!-- Remember me -->
+        <div class="form-check">
+            {{ form.remember(class="form-check-input") }}
+            {{ form.remember.label(class="form-check-label") }}
+        </div>
+        <br>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-warning") }}
+            <a href="{{ url_for('reset_request') }}">Oublier votre mot de passe?</a>
+        </div>
+
+    </form>
+</div>
+
+<!-- Message to login if user's have an account -->
+<div>
+    <small class="text-muted">
+        Pas de compte? <a class="ml-2" href="{{ url_for('register') }}">Créer votre compte</a>
+    </small>
+</div>
+{% endblock content %}

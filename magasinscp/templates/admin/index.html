@@ -1,0 +1,47 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    * {
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .home {
+        animation: fadeInAnimation ease 2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+<div class="home">
+    <br>
+    <header class="page-header gradient">
+        <div class="container pt-5">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-5">
+                    <h1><strong>
+                            <h1>Bonjour, bienvenue au portail des enseignants et enseignantes!</h1>
+                        </strong></h1>
+                    <br>
+                    <a href="/account"><button type="button" class="btn btn-warning">Retourner à la page
+                            principale</button></a>
+                </div>
+                <div class="col-md-7">
+                    <img src="../static/teacher-vector-art.jpeg" alt="Header image">
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+services:
+  magasinscp:
+    build: ./
+    volumes:
+      - ./:/app
+    ports:
+      - 5001:80

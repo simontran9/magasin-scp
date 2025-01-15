@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}Votre compte{% endblock title %}
+
+{% block content %}
+<div class="text-center">
+    <p>Si vous devez revalider votre adresse courriel, cliquez sur le bouton ci-dessous.</p>
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.submit(class="btn btn-warning") }}<br>
+    </form>
+</div>
+<br><img src="../static/pfp.svg" class="rounded mx-auto d-block" alt="profile-picture-image" height="70"><br>
+<h2 class="text-center">Votre profile</h2>
+<div class="text-center">
+    <br>
+    <p><strong>Prénom:</strong> {{ current_user.first_name }}</p>
+    <p><strong>Dernier nom:</strong> {{ current_user.last_name }}</p>
+    <p><strong>Addresse courriel:</strong> {{ current_user.email }}</p>
+    <p><strong>Étampes:</strong> {{ current_user.stamps }} étampes</p><br>
+</div>
+<h2 class="text-center">Prêt à acheter?</h2>
+<div class="text-center">
+    <br><a href="buy"><button type="button" class="btn btn-warning">Achetez des items</button></a>
+</div>
+{% endblock content %}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    <link rel="stylesheet" href="../static/styles.css">
+
+    <title>
+        {% block title %}
+        Magasin SCP
+        {% endblock title %}
+    </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+{% block content %}
+<div class="home">
+    <br>
+    <header class="page-header gradient">
+        <div class="container pt-5">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-5">
+                    <h1><strong>Acheter rapidement sans délai</strong></h1>
+                    <br>
+                    <p>Magasin SCP est une application web en ligne permettant de gérer vos étamps viking et d'acheter
+                        des articles. Les élèves peuvent créer un compte pour consulter leurs timbres et acheter les
+                        articles
+                        disponibles de manière simple et efficace, tandis que les enseignants peuvent gérer les timbres
+                        de leurs élèves et traiter leurs achats. </p><br>
+                    <a href="{{ url_for('register')}}"><button type="button" style="color: white"
+                            class="btn btn-warning btn-lg">Débuter</button></a>
+                </div>
+                <div class="col-md-7">
+                    <img src="../static/home_page_art.jpeg" alt="Header image">
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+{% endblock content %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

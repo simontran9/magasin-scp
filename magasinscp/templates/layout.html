@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+  <link rel="stylesheet" href="../static/styles.css">
+
+  <title>
+    {% block title %}
+    Magasin SCP
+    {% endblock title %}
+  </title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light navbar-style">
+    <div class=" container-fluid">
+      <!-- Logo -->
+      <a class="navbar-brand" href="{{ url_for('index')}}"><img src="../static/logo.svg" alt="" height="45">
+        Magasin SCP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Sections of the Navbar -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="{% if active=='account' %} nav-link active {% else %} nav-link {% endif %}"
+              href="{{ url_for('account')}}">Votre compte</a>
+          </li>
+          <li class="nav-item">
+            <a class="{% if active=='buy' %} nav-link active {% else %} nav-link {% endif %}"
+              href="{{ url_for('buy')}}">Achat</a>
+          </li>
+          {% endif %}
+        </ul>
+
+
+        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+          {% if current_user.is_authenticated and current_user.admin == True %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Portail des enseignant(e)s</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout')}}">Déconnecter</a>
+          </li>
+          {% elif current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout')}}">Déconnecter</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="{% if active=='login' %} nav-link active {% else%} nav-link {% endif %}"
+              href="{{ url_for('login')}}">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="{% if active=='register' %} nav-link active {% else%} nav-link {% endif %}"
+              href="{{ url_for('register')}}">Créer votre compte</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+  <div class="container">
+    <!-- Account created message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+
+  <footer class="bg-light text-center text-lg-start mt-auto">
+    <div class="text-center p-3" style="background-color: rgb(99, 91, 255); color: rgb(255, 255, 255);">
+      📚 Magasin SCP
+      <br>
+      🔨 Réalisées par Michael, Luke et Simon
+    </div>
+  </footer>
+
+</body>
+
+</html>
